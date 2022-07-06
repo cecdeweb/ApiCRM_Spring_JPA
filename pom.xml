@@ -38,6 +38,9 @@
 		</dependency>
 	</dependencies>
 
+	<!--TODO install swagger-->
+	<!--Après avoir redémarré il suffit de consulter la page : http://localhost:8080/swagger-ui.html-->
+
 	<build>
 		<plugins>
 			<plugin>

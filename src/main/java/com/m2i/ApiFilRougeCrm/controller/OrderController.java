@@ -27,9 +27,5 @@ public class OrderController {
         orderService.createOrder(order);
     }
 
-//    @PostMapping("order")
-//    public List<Order> saveOrder(Order order){
-//       return orderService.saveOrder();
-//    }
 
 }

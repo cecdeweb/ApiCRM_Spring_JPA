@@ -29,7 +29,7 @@ public class Client {
     @Column(name="country")
     private String country;
     @Column(name="state")
-    private int state;
+    private int state; // INACTIVE:0 ACTIVE:1
 
     public Long getId() {
         return id;

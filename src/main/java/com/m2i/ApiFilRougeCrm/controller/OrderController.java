@@ -22,6 +22,7 @@ public class OrderController {
     public void createOrder(@RequestBody Order order){
         orderService.createOrder(order);
     }
+
     @GetMapping("orders/{id}")
     public Order getOrder(@PathVariable("id") Long id){
        return orderService.getOrders(id);
@@ -30,6 +31,11 @@ public class OrderController {
     @PutMapping("orders/{id}")
     public void updateOrder(@RequestBody Order order){
         orderService.updateOrder(order);
+    }
+
+    @DeleteMapping("orders/{id}")
+    public void deleteOrder(@PathVariable Long id){
+        orderService.deleteOrder(id);
     }
 
 }

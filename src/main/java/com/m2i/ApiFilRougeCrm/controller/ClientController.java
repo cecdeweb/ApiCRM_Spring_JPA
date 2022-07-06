@@ -33,4 +33,9 @@ public class ClientController {
         clientService.updateClient(client);
     }
 
+    @DeleteMapping("clients/{id}")
+    public void deleteClient(@PathVariable Long id){
+        clientService.deleteClient(id);
+    }
+
 }

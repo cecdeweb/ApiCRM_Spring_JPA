@@ -31,7 +31,6 @@ public class Client {
     @Column(name="state")
     private int state;
 
-
     public Long getId() {
         return id;
     }

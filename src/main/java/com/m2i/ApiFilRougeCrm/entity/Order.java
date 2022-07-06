@@ -17,19 +17,22 @@ public class Order {
     private int nbDays;
     @Column(name = "unitPrice")
     private float unitPrice;
-    //@Column(name = "state")
-    //private int state;
-    //private Client client;
+    @Column(name = "state")
+    private int state;
+    @ManyToOne//(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "clientId")
+    private Client client;
 
     public Order() {
     }
 
-    public Order(String typePresta, String designation, int nbDays, float unitPrice, int state) {
+    public Order(String typePresta, String designation, int nbDays, float unitPrice, int state, Client client) {
         this.typePresta = typePresta;
         this.designation = designation;
         this.nbDays = nbDays;
         this.unitPrice = unitPrice;
-        //this.state = state;
+        this.client = client;
+        this.state = state;
     }
 
     public Long getId() {
@@ -72,11 +75,18 @@ public class Order {
         this.unitPrice = unitPrice;
     }
 
-//    public int getState() {
-//        return state;
-//    }
-//
-//    public void setState(int state) {
-//        this.state = state;
-//    }
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 }

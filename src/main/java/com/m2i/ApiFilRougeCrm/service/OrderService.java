@@ -21,4 +21,11 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    public Order getOrders(Long id) {
+        return orderRepository.findById(id).get();
+    }
+
+    public void updateOrder(Order order){
+        orderRepository.save(order);
+    }
 }

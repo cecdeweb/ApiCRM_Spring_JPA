@@ -24,7 +24,7 @@ public class ClientController {
     }
 
     @GetMapping("clients/{id}")
-    public Client getClient(@PathVariable Long id){
+    public Client getClient(@PathVariable("id") Long id){
         return clientService.getClient(id);
     }
 
@@ -34,7 +34,7 @@ public class ClientController {
     }
 
     @DeleteMapping("clients/{id}")
-    public void deleteClient(@PathVariable Long id){
+    public void deleteClient(@PathVariable("id") Long id){
         clientService.deleteClient(id);
     }
 

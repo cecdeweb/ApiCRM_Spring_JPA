@@ -17,8 +17,9 @@ public class Order {
     private int nbDays;
     @Column(name = "unitPrice")
     private float unitPrice;
-    @Column(name = "state")
-    private int state;
+    //@Column(name = "state")
+    //private int state;
+    //private Client client;
 
     public Order() {
     }
@@ -28,7 +29,7 @@ public class Order {
         this.designation = designation;
         this.nbDays = nbDays;
         this.unitPrice = unitPrice;
-        this.state = state;
+        //this.state = state;
     }
 
     public Long getId() {
@@ -71,11 +72,11 @@ public class Order {
         this.unitPrice = unitPrice;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
+//    public int getState() {
+//        return state;
+//    }
+//
+//    public void setState(int state) {
+//        this.state = state;
+//    }
 }

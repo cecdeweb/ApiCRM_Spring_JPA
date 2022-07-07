@@ -2,7 +2,9 @@ package com.m2i.ApiFilRougeCrm.controller;
 
 import com.m2i.ApiFilRougeCrm.dto.OrderDTO;
 import com.m2i.ApiFilRougeCrm.dto.OrderMapper;
+import com.m2i.ApiFilRougeCrm.entity.Client;
 import com.m2i.ApiFilRougeCrm.entity.Order;
+import com.m2i.ApiFilRougeCrm.service.ClientService;
 import com.m2i.ApiFilRougeCrm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ClientService clientService;
+
     @GetMapping("orders")
     public List<OrderDTO> getOrders(){
         List<Order> orders = orderService.getOrders();
@@ -28,19 +33,26 @@ public class OrderController {
     }
 
     @PostMapping("orders")
-    public void createOrder(@RequestBody Order order){
+    public void createOrder(@RequestBody OrderDTO orderDTO) {
+
+        Long clientId = orderDTO.getClient().getId();
+        Client client = clientService.getClient(clientId).get();//ATTENTION
+        Order order = OrderMapper.buildOrder(orderDTO, client);
         orderService.createOrder(order);
     }
 
     @GetMapping("orders/{id}")
-    public OrderDTO getOrder(@PathVariable("id") Long id){
-        Order order = orderService.getOrders(id);
+    public OrderDTO getOrder(@PathVariable("id") Long id) {
+        Order order = orderService.getOrder(id);
         OrderDTO orderDTO = OrderMapper.buildOrderDTO(order);
         return orderDTO;
     }
 
     @PutMapping("orders/{id}")
-    public void updateOrder(@RequestBody Order order){
+    public void updateOrder(@RequestBody OrderDTO orderDTO) {
+        Long clientId = orderDTO.getClient().getId();
+        Client client = clientService.getClient(clientId).get();//ATTENTION
+        Order order = OrderMapper.buildOrder(orderDTO, client);
         orderService.updateOrder(order);
     }
 

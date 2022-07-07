@@ -17,7 +17,6 @@ public class Order {
     private int nbDays;
     @Column(name = "unitPrice")
     private float unitPrice;
-    @Column(name = "state")
     private int state; // CANCELLED:0 OPTION:1 CONFIRMED:2
     @ManyToOne//(cascade = {CascadeType.ALL})
     @JoinColumn(name = "clientId")
@@ -32,7 +31,6 @@ public class Order {
         this.nbDays = nbDays;
         this.unitPrice = unitPrice;
         this.client = client;
-        this.state = state;
     }
 
     public Long getId() {

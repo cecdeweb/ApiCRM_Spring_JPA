@@ -7,6 +7,7 @@ import com.m2i.ApiFilRougeCrm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,14 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("orders")
-    public List<Order> getOrders(){
-        return orderService.getOrders();
+    public List<OrderDTO> getOrders(){
+        List<Order> orders = orderService.getOrders();
+        List<OrderDTO> ordersDTO = new ArrayList<>();
+        for(Order order : orders){
+            OrderDTO orderDTO = OrderMapper.buildOrderDTO(order);
+            ordersDTO.add(orderDTO);
+        }
+        return ordersDTO;
     }
 
     @PostMapping("orders")

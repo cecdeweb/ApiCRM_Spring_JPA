@@ -1,5 +1,7 @@
 package com.m2i.ApiFilRougeCrm.controller;
 
+import com.m2i.ApiFilRougeCrm.dto.OrderDTO;
+import com.m2i.ApiFilRougeCrm.dto.OrderMapper;
 import com.m2i.ApiFilRougeCrm.entity.Order;
 import com.m2i.ApiFilRougeCrm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,10 @@ public class OrderController {
     }
 
     @GetMapping("orders/{id}")
-    public Order getOrder(@PathVariable("id") Long id){
-       return orderService.getOrders(id);
+    public OrderDTO getOrder(@PathVariable("id") Long id){
+        Order order = orderService.getOrders(id);
+        OrderDTO orderDTO = OrderMapper.buildOrderDTO(order);
+        return orderDTO;
     }
 
     @PutMapping("orders/{id}")

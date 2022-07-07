@@ -28,7 +28,8 @@ public class ClientController {
     }
 
     @PostMapping("clients")
-    public void createClient(@RequestBody Client client){
+    public void createClient(@RequestBody ClientDTO clientDTO){
+        Client client = ClientMapper.buildClient(clientDTO);
         clientService.createClient(client);
     }
 
@@ -40,7 +41,8 @@ public class ClientController {
     }
 
     @PutMapping("clients/{id}")
-    public void updateClient(@RequestBody Client client){
+    public void updateClient(@RequestBody ClientDTO clientDTO){
+        Client client = ClientMapper.buildClient(clientDTO);
         clientService.updateClient(client);
     }
 

@@ -1,10 +1,13 @@
 package com.m2i.ApiFilRougeCrm.controller;
 
+import com.m2i.ApiFilRougeCrm.dto.ClientDTO;
+import com.m2i.ApiFilRougeCrm.dto.ClientMapper;
 import com.m2i.ApiFilRougeCrm.entity.Client;
 import com.m2i.ApiFilRougeCrm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,8 +17,14 @@ public class ClientController {
     ClientService clientService;
 
     @GetMapping("clients")
-    public List<Client> getClients() {
-        return clientService.getAllClients();
+    public List<ClientDTO> getClients() {
+        List<Client> clients = clientService.getAllClients();
+        List<ClientDTO> clientsDTO = new ArrayList<>();
+        for (Client client: clients){
+            ClientDTO clientDTO = ClientMapper.buildClientDTO(client);
+            clientsDTO.add(clientDTO);
+        }
+        return clientsDTO;
     }
 
     @PostMapping("clients")
@@ -24,8 +33,10 @@ public class ClientController {
     }
 
     @GetMapping("clients/{id}")
-    public Client getClient(@PathVariable("id") Long id){
-        return clientService.getClient(id);
+    public ClientDTO getClient(@PathVariable("id") Long id){
+        Client client = clientService.getClient(id);
+        ClientDTO clientDTO = ClientMapper.buildClientDTO(client);
+        return clientDTO;
     }
 
     @PutMapping("clients/{id}")
